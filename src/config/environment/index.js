@@ -9,6 +9,7 @@ const config = {
   port: process.env.PORT || 9000,
   ip: process.env.IP || "127.0.0.1",
   secret: "secret-code",
+  redisPort: 6379,
   mongo: { options: { useNewUrlParser: true, useUnifiedTopology: true } }
 };
 
