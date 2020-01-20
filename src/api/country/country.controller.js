@@ -17,8 +17,8 @@ const index = (req, res) => {
 // ********************* POST Routes *******************//
 const create = (req, res) => {
   Country.findOne({ name: req.body.name })
-    .then(faq => {
-      if (!faq) {
+    .then(country => {
+      if (!country) {
         const record = new Country(req.body);
         Country.create(record)
           .then(DataHelper.onResponseWithResult(res, 201))
@@ -26,7 +26,7 @@ const create = (req, res) => {
       } else {
         return res.json({
           status: "error",
-          question: faq ? "The Country is already in use" : null
+          message: "The Country is already in use."
         });
       }
     })
