@@ -18,7 +18,7 @@ const CountrySchema = new Schema(
       require: true
     }
   },
-  { timestamps: true }
+  { timestamps: true, toObject: { versionKey: false } }
 );
 
 module.exports = mongoose.model("Country", CountrySchema);

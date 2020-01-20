@@ -10,7 +10,13 @@ const config = {
   ip: process.env.IP || "127.0.0.1",
   secret: "secret-code",
   redisPort: 6379,
-  mongo: { options: { useNewUrlParser: true, useUnifiedTopology: true } }
+  mongo: {
+    options: {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    }
+  }
 };
 
 module.exports = lodash.merge(

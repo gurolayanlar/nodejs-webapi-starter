@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index"
+    "start": "node src/index",
+    "debug": "node --inspect-brk  src/index"
   },
   "dependencies": {
     "compression": "^1.7.4",

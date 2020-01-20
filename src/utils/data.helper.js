@@ -26,7 +26,7 @@ const onResponseWithResult = (res, statusCode) => {
   statusCode = statusCode || 200;
   return function(entity) {
     if (entity) {
-      return res.status(statusCode).json(entity);
+      return res.status(statusCode).json(entity.toObject());
     }
   };
 };
