@@ -1,0 +1,100 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.3.0",
+    "title": "webapi",
+    "description": "Web Api Sample",
+    "termsOfService": "http://api_url/terms/",
+    "contact": {
+      "name": "Game DevTeam",
+      "email": "devteam@gamental.com",
+      "url": "https://www.gamental.com/"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9000/",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "CRUD operations"
+    }
+  ],
+  "paths": {
+    "/country": {
+      "get": {
+        "tags": ["CRUD operations"],
+        "description": "Get countries",
+        "operationId": "getCountries",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Countries were obtained",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Countries"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "name is missing",
+                  "internal_code": "missing_parameters"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Country": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Turkey"
+          }
+        }
+      },
+      "Countries": {
+        "type": "object",
+        "properties": {
+          "countries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Country"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "internal_code": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

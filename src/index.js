@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const app = require('./app');
 const config = require('./config/environment');
 
+const swaggerUi = require('swagger-ui-express');
+const openApiDocumentation = require('./openapi/info');
+
 // Connect to MongoDB
 mongoose.connect(config.mongo.uri, config.mongo.options);
 mongoose.connection.on('error', function (err) {
@@ -25,6 +28,8 @@ require('./config/settings/redis');
 
 // Load application api
 require('./routes')(app);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 const startServer = () => {
   server.listen(config.port, config.ip, function() {
